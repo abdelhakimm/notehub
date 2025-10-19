@@ -50,7 +50,7 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-            <!-- Surefire pour les tests JUnit 5 (on configurera les deps test plus tard)
+            <!-- Surefire pour les tests JUnit 5 on configurera les deps test plus tard
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-surefire-plugin</artifactId>

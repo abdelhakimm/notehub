@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.portfolio</groupId>
+    <artifactId>notehub</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <name>NoteHub</name>
+    <description>NoteHub (Jakarta EE 10)</description>
+
+    <properties>
+        <maven.compiler.release>17</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jakarta.ee.version>10.0.0</jakarta.ee.version>
+    </properties>
+
+    <dependencies>
+        <!-- API Jakarta EE (REST, CDI, JPA, Validation, etc.), fournies par le serveur à l'exécution -->
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-web-api</artifactId>
+            <version>${jakarta.ee.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- (on ajoutera JUnit / RestAssured plus tard) -->
+    </dependencies>
+
+    <build>
+        <finalName>notehub</finalName>
+        <!-- plugin WAR pour s'assurer d'un packaging web propre -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <release>17</release>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+                <configuration>
+                    <!-- pas de web.xml requis (on est full annotations) -->
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <!-- Surefire pour les tests JUnit 5 (on configurera les deps test plus tard)
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <version>3.2.5</version>
+            </plugin>
+            -->
+        </plugins>
+    </build>
+
+</project>

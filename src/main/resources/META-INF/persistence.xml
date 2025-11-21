@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+
              version="3.0">
+
     <persistence-unit name="notehubPU" transaction-type="JTA">
+
         <jta-data-source>jdbc/notehubDS</jta-data-source>
 
+
+
         <properties>
-            <!-- Génération de schéma pour le DEV (on créera les tables à la volée) -->
-            <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
 
-            <!-- Logs SQL utiles au début (EclipseLink = implémentation JPA dans Payara) -->
-            <property name="eclipselink.logging.level" value="FINE"/>
-            <property name="eclipselink.logging.parameters" value="true"/>
+            <property name="jakarta.persistence.schema-generation.database.action" value="create" />
 
-            <!-- Weaving JPA (optimisations runtime) -->
-            <property name="eclipselink.weaving" value="true"/>
+            <property name="eclipselink.logging.level" value="FINE" />
+
+            <property name="eclipselink.logging.parameters" value="true" />
+
+            <property name="eclipselink.weaving" value="true" />
+
         </properties>
+
     </persistence-unit>
+
 </persistence>

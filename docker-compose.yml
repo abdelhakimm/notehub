@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: notehub-db
+    environment:
+      - POSTGRES_DB=notehub
+      - POSTGRES_USER=abdel
+      - POSTGRES_PASSWORD=test59600
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U abdel -d notehub" ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  app:
+    build: .
+    container_name: notehub-app
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8090:8080"
+      # ⚠️ Ne PAS mettre PAYARA_ARGS ici, on laisse la valeur par défaut du container
+
+volumes:
+  db-data:

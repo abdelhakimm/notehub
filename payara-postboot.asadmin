@@ -1,0 +1,13 @@
+# 1) Create the connection pool
+# (Ensure this is on one line or use backslashes for line breaks)
+create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.postgresql.ds.PGSimpleDataSource --property user=abdel:password=test59600:DatabaseName=notehub:ServerName=db:PortNumber=5432:ssl=false notehubPool
+
+# 2) Create the JNDI resource
+create-jdbc-resource --connectionpoolid notehubPool jdbc/notehubDS
+
+# 3) Enable validation (Optional but recommended)
+set resources.jdbc-connection-pool.notehubPool.is-connection-validation-required=true
+set resources.jdbc-connection-pool.notehubPool.connection-validation-method=auto
+
+# 4) DEPLOY the application explicitly after resources are created
+deploy /tmp/notehub.war
